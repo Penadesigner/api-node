@@ -19,3 +19,5 @@ app.delete('/produtos/:id', (req,res) => {
 app.listen(port, () => {
     console.log('server rodando');
 })
+
+module.exports = app
