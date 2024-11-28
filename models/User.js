@@ -56,6 +56,39 @@ class User{
             return false;
         }
     }
+
+    async update(id, name, email, role){
+
+        var user = await this.findById(id);
+
+        if (user != undefined) {
+            if (email != user.email) {
+                var result = await this.findEmail(email);
+                if (result == false) {
+                    editUser.email = email;
+                }
+                else {
+                    return {status: false, err: "O email ja esta cadastrado"}
+                }
+            }
+        }
+
+        if (name != undefined) {
+            editUser.name = name;
+        }
+
+        if (role != undefined) {
+            editUser.role = role;
+        }
+
+        else {
+            return {status: false, err: "O usuario não Existe"}
+        }
+
+    }
+
+
+
 }
 
 module.exports = new User();
